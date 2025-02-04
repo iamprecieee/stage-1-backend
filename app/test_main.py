@@ -43,7 +43,7 @@ async def test_non_integer_failure():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as async_client:
         for value in values:
             response = await async_client.get(f"/api/classify-number?number={value}")
-            assert response.status_code == 422
+            assert response.status_code == 400
             assert response.json()["number"] == str(value)
             assert response.json()["error"] == True
             
@@ -51,8 +51,8 @@ async def test_non_integer_failure():
 async def test_invalid_parameter_failure():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as async_client:
         response = await async_client.get("/api/classify-number")
-        assert response.status_code == 422
-        assert response.json()["number"] == "Unprocessable Entity"
+        assert response.status_code == 400
+        assert response.json()["number"] == "Bad Request"
         assert response.json()["error"] == True
             
             

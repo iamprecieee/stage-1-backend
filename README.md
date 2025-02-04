@@ -18,7 +18,7 @@ A FastAPI-based service that analyzes numbers(integers) and returns their mathem
 - Python 3.12 or higher
 
 ### Installation Steps
-1. Clone the [repository](https://github.com/iamprecieee/HNG-12-task-1.git).
+1. Clone the [repository](https://github.com/iamprecieee/stage-1-backend.git).
 
 2. Create and activate a virtual environment:
     <details>
