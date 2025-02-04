@@ -1,10 +1,11 @@
+from .exceptions import NumberException
+
 from typing import Any
-from .internal.exceptions import NumberException
 from fastapi import status
 
 
 class NumberValidator:
-    def __call__(self, number: Any = None) -> int:
+    async def __call__(self, number: Any = None) -> int:
         try:
             int(number)
             return number
