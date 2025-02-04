@@ -5,7 +5,9 @@ from fastapi import status
 
 
 class NumberValidator:
-    async def __call__(self, number: Any = None) -> int:
+    """Ensures only valid integers(+ve or -ve) are accepted. Returns a HTTPException if invalid."""
+    
+    def __call__(self, number: Any = None) -> int:
         try:
             int(number)
             return number

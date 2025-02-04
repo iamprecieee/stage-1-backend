@@ -2,10 +2,14 @@ from pydantic import BaseModel
 
 
 class NumbersAPIModel(BaseModel):
+    """Defines structure for numbersapi JSON response."""
+    
     text: str
     
     
 class ResponseDataModel(BaseModel):
+    """Defines structure for successful response for base api."""
+    
     number: int
     is_prime: bool
     is_perfect: bool
@@ -15,5 +19,6 @@ class ResponseDataModel(BaseModel):
     
     
 class InvalidResponseModel(BaseModel):
+    """Defines structure for general api error response"""
     number: str
     error: bool

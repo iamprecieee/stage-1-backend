@@ -11,7 +11,7 @@ class NumberUtils:
         self.number= int(number)
         self.properties_list: list[str | None] = []
 
-    async def check_prime(self) -> bool:
+    def check_prime(self) -> bool:
         if self.number > 1:
             if self.number == 2:
                 return True
@@ -23,7 +23,7 @@ class NumberUtils:
             return True
         return False
     
-    async def check_perfect(self) -> bool:
+    def check_perfect(self) -> bool:
         if self.number > 0:
             divisor_sum = 0
             for i in range(1, self.number):
@@ -33,20 +33,20 @@ class NumberUtils:
                 return True
         return False
 
-    async def check_armstrong(self) -> None:
+    def check_armstrong(self) -> None:
         if self.number >= 0:
             digit_sum = sum(int(digit) ** len(str(self.number)) for digit in str(self.number))
             if digit_sum == self.number:
                 self.properties_list.append("armstrong")
 
-    async def check_parity(self) -> None:
+    def check_parity(self) -> None:
         (
             self.properties_list.append("even")
             if self.number % 2 == 0
             else self.properties_list.append("odd")
         )
         
-    async def get_digit_sum(self) -> int:
+    def get_digit_sum(self) -> int:
         number_str = str(self.number)
         if number_str.startswith("-"):
             return -int(number_str[1]) + (sum(int(digit) for digit in number_str[2:]))
@@ -74,11 +74,11 @@ class NumberUtils:
 
     async def check_all(self) -> dict:
         fun_fact = await self.get_fun_fact()
-        is_prime = await self.check_prime()
-        is_perfect = await self.check_perfect()
-        await self.check_armstrong()
-        await self.check_parity()
-        digit_sum = await self.get_digit_sum()
+        is_prime = self.check_prime()
+        is_perfect = self.check_perfect()
+        self.check_armstrong()
+        self.check_parity()
+        digit_sum = self.get_digit_sum()
         response_dict = {
             "number": self.number,
             "is_prime": is_prime,
