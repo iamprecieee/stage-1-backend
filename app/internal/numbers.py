@@ -8,7 +8,7 @@ from fastapi import status
 
 class NumberUtils:
     def __init__(self, number: int) -> None:
-        self.number= int(number)
+        self.number = int(number)
         self.properties_list: list[str | None] = []
 
     def check_prime(self) -> bool:
@@ -22,7 +22,7 @@ class NumberUtils:
                     return False
             return True
         return False
-    
+
     def check_perfect(self) -> bool:
         if self.number > 0:
             divisor_sum = 0
@@ -35,7 +35,9 @@ class NumberUtils:
 
     def check_armstrong(self) -> None:
         if self.number >= 0:
-            digit_sum = sum(int(digit) ** len(str(self.number)) for digit in str(self.number))
+            digit_sum = sum(
+                int(digit) ** len(str(self.number)) for digit in str(self.number)
+            )
             if digit_sum == self.number:
                 self.properties_list.append("armstrong")
 
@@ -45,13 +47,13 @@ class NumberUtils:
             if self.number % 2 == 0
             else self.properties_list.append("odd")
         )
-        
+
     def get_digit_sum(self) -> int:
         number_str = str(self.number)
         if number_str.startswith("-"):
             return -int(number_str[1]) + (sum(int(digit) for digit in number_str[2:]))
         return sum((int(digit) for digit in number_str))
-    
+
     async def get_fun_fact(self) -> NumbersAPIModel:
         try:
             async with httpx.AsyncClient() as client:
